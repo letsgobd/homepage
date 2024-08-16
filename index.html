@@ -337,11 +337,24 @@ h1, h2, h3, h4, h5, h6 {
 </nav>
 <script>
   $(document).ready(function () {
+    $('.navbar-toggler').click(function () {
+      var isExpanded = $(this).attr('aria-expanded') === 'true';
+      if (isExpanded) {
+        $('#navbarNav').collapse('hide');
+        $(this).attr('aria-expanded', 'false');
+      } else {
+        $('#navbarNav').collapse('show');
+        $(this).attr('aria-expanded', 'true');
+      }
+    });
+
     $('.navbar-nav>li>a').on('click', function () {
-      $('.navbar-collapse').collapse('hide');
+      $('#navbarNav').collapse('hide');
+      $('.navbar-toggler').attr('aria-expanded', 'false');
     });
   });
 </script>
+
 
 
 	
