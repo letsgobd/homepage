@@ -335,7 +335,16 @@ h1, h2, h3, h4, h5, h6 {
     </ul>
   </div>
 </nav>
+<script>
+  $(document).ready(function () {
+    $('.navbar-nav>li>a').on('click', function () {
+      $('.navbar-collapse').collapse('hide');
+    });
+  });
+</script>
 
+
+	
 <!-- Hero Section -->
 <div id="hero" class="hero">
   <div>
