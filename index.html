@@ -984,6 +984,83 @@ essay you commissioned us for.</p>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 
+
+
+
+
+<section id="agreement" class="container py-5">
+  <h2 class="text-center mb-4">Agreement</h2>
+  <p class="text-center">Please read the agreement below and click the button to copy it for your reference.</p>
+  
+  <!-- Fixed-Size Text Box -->
+  <div class="form-group">
+    <div id="agreementText" class="fixed-textbox">
+I acknowledge and agree to the terms and conditions outlined by Let's Go. I confirm my acceptance of the policies regarding payments, revisions, deadlines, and communication. I understand that failure to adhere to these terms may result in the termination of services without a refund.
+
+By using Let's Go's services, I willingly accept this agreement and commit to collaborating professionally throughout the process.
+    </div>
+  </div>
+
+  <!-- Copy Button -->
+  <div class="text-center">
+    <button class="btn btn-primary" onclick="copyAgreementText()">Copy Agreement Text</button>
+    <p id="copyFeedback" class="text-success mt-2" style="display: none;">Text copied to clipboard!</p>
+  </div>
+</section>
+
+<script>
+  function copyAgreementText() {
+    // Create a temporary textarea to copy the text
+    const tempTextarea = document.createElement("textarea");
+    tempTextarea.value = document.getElementById("agreementText").innerText;
+    document.body.appendChild(tempTextarea);
+    tempTextarea.select();
+    tempTextarea.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy text to clipboard
+    document.execCommand("copy");
+    document.body.removeChild(tempTextarea);
+
+    // Show feedback message
+    const feedback = document.getElementById("copyFeedback");
+    feedback.style.display = "block";
+
+    // Hide feedback message after 3 seconds
+    setTimeout(() => {
+      feedback.style.display = "none";
+    }, 3000);
+  }
+</script>
+<style>
+  .fixed-textbox {
+	width: 100%; /* Full width of container */
+    height: auto; /* Automatically adjust height based on content */
+    padding: 4px; /* Padding around the text */
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    overflow-y: auto; /* Add scrollbar if content exceeds fixed height */
+    white-space: pre-wrap; /* Preserve text formatting (line breaks, spaces) */
+    text-align: center; /* Center-align the text */
+  }
+
+  .btn-primary {
+    background-color: #DC0228;
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background-color: darkred;
+  }
+</style>
+
+	
+	
+
+
+	
 <section id="contact" class="container py-5">
   <div class="row justify-content-center">
     <div class="col-md-8">
