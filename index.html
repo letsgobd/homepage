@@ -649,6 +649,37 @@ h1, h2, h3, h4, h5, h6 {
     color: #DC0228;
   }
 </style>
+	<style>
+  .red-folder {
+    color: #DC0228;
+    transition: color 0.3s ease;
+  }
+
+  /* Jiggle effect on hover */
+  .red-folder:hover {
+    animation: jiggle 0.5s ease; /* Trigger the jiggle animation */
+    color: #FFD700; /* Change color on hover */
+  }
+
+  @keyframes jiggle {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-10deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    75% {
+      transform: rotate(-10deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+</style>
+
 
 
 
