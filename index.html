@@ -310,23 +310,43 @@ h1, h2, h3, h4, h5, h6 {
   // Toggle the popup feature on/off
   const popupEnabled = true; // Set to 'false' to disable the popup
 
+  let popupInterval; // To store the interval ID
+
   // Function to show the popup
   function showPopup() {
     if (popupEnabled) {
-      document.getElementById('popupContainer').style.display = 'block';
+      const popupContainer = document.getElementById('popupContainer');
+      const popupContent = document.getElementById('popupContent');
+      
+      popupContainer.style.display = 'block';
+      popupContent.style.left = '50%'; // Slide the popup into view
     }
   }
 
   // Function to close the popup
   function closePopup() {
-    document.getElementById('popupContainer').style.display = 'none';
+    const popupContent = document.getElementById('popupContent');
+    popupContent.style.left = '-100%'; // Slide the popup out of view
+
+    // Hide the overlay after the slide-out animation completes
+    setTimeout(() => {
+      document.getElementById('popupContainer').style.display = 'none';
+    }, 500); // Match the CSS transition duration
   }
 
-  // Show the popup after 8 seconds (8000 ms)
+  // Show the popup every 10 seconds
   window.onload = function () {
-    setTimeout(showPopup, 8000);
+    if (popupEnabled) {
+      popupInterval = setInterval(showPopup, 10000); // Show every 10 seconds
+    }
   };
+
+  // Optional: Clear the interval when needed
+  function disablePopup() {
+    clearInterval(popupInterval);
+  }
 </script>
+
 
 
 
