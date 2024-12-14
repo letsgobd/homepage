@@ -262,53 +262,54 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+#sliderContainer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Dim background overlay */
+      z-index: 1000;
+      display: none; /* Initially hidden */
+    }
 
-<style>
-  #sliderContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Dim background overlay */
-    z-index: 1000;
-  }
+    #slider {
+      position: fixed;
+      top: 50%;
+      left: -300px; /* Start off-screen */
+      width: 300px;
+      height: auto;
+      transform: translateY(-50%);
+      background: white;
+      padding: 20px;
+      z-index: 1001;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      transition: left 0.5s ease; /* Smooth slide-in/out */
+    }
 
-  #sliderContainer #slider {
-    position: fixed;
-    top: 50%;
-    left: -300px; /* Start off-screen */
-    width: 300px;
-    height: auto;
-    transform: translateY(-50%);
-    background: white;
-    padding: 20px;
-    z-index: 1001;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transition: left 0.5s ease; /* Smooth slide-in/out */
-  }
+    #slider p {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #333;
+      font-family: Arial, sans-serif;
+    }
 
-  #sliderContainer #slider img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
+    #slider button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: transparent;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-  #sliderContainer #slider button {
-    background: #DC0228;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
+    #slider button:hover {
+      color: #DC0228;
+    }
 
-  #sliderContainer #slider button:hover {
-    background: darkred;
-  }
 </style>
 
 	  
@@ -350,13 +351,15 @@ h1, h2, h3, h4, h5, h6 {
 	
 	
 <!--Popup--->
-<div id="sliderContainer" style="display:none;">
-  <div id="slider" style="position:fixed; top:50%; left:-300px; width:300px; height:auto; transform:translateY(-50%); background:white; padding:20px; z-index:1001; text-align:center; border-radius:10px; box-shadow:0px 4px 8px rgba(0,0,0,0.2); transition: left 0.5s ease;">
-    <img src="slider-popup.jpg" alt="Slider Image" style="max-width:100%; height:auto; border-radius:10px;">
-    <p style="margin:10px 0;">This is a slider message!</p>
-    <button onclick="closeSlider()" style="background:#DC0228; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Close</button>
+
+<div id="sliderContainer">
+  <div id="slider">
+    <button onclick="closeSlider()">&times;</button>
+    <p><strong>We provide Turnitin AI & Plagiarism Report after you agree on the draft.</strong></p>
   </div>
 </div>
+
+<!-- Script -->
 <script>
   // Toggle the slider feature on/off
   const sliderEnabled = true; // Set to 'false' to disable the slider
@@ -367,7 +370,7 @@ h1, h2, h3, h4, h5, h6 {
       const sliderContainer = document.getElementById('sliderContainer');
       const slider = document.getElementById('slider');
 
-      sliderContainer.style.display = 'block';
+      sliderContainer.style.display = 'block'; // Show the overlay
       slider.style.left = '0'; // Slide in from the left
 
       // Automatically hide the slider after 10 seconds
@@ -383,7 +386,7 @@ h1, h2, h3, h4, h5, h6 {
 
     slider.style.left = '-300px'; // Slide out to the left
     setTimeout(() => {
-      document.getElementById('sliderContainer').style.display = 'none';
+      document.getElementById('sliderContainer').style.display = 'none'; // Hide the overlay
     }, 500); // Match the CSS transition duration
   }
 
@@ -394,6 +397,10 @@ h1, h2, h3, h4, h5, h6 {
     }
   };
 </script>
+
+
+
+	
 
 
 	
