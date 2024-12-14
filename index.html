@@ -262,7 +262,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-#sliderContainer {
+
+ #sliderContainer {
       position: fixed;
       top: 0;
       left: 0;
@@ -286,7 +287,7 @@ h1, h2, h3, h4, h5, h6 {
       text-align: center;
       border-radius: 10px;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      transition: bottom 0.5s ease, top 0.5s ease; /* Smooth slide-in/out */
+      transition: bottom 0.5s ease; /* Smooth slide-in/out */
     }
 
     #slider p {
@@ -310,7 +311,6 @@ h1, h2, h3, h4, h5, h6 {
       color: #DC0228;
     }
 
-</style>
 
 	  
   </style>
@@ -385,12 +385,9 @@ h1, h2, h3, h4, h5, h6 {
   function closeSlider() {
     const slider = document.getElementById('slider');
 
-    slider.style.bottom = ''; // Clear bottom style
-    slider.style.top = '-200px'; // Slide out to the top
+    slider.style.bottom = '-200px'; // Slide out to the bottom
     setTimeout(() => {
       document.getElementById('sliderContainer').style.display = 'none'; // Hide the overlay
-      slider.style.top = ''; // Clear the top style
-      slider.style.bottom = '-200px'; // Reset position for next use
     }, 500); // Match the CSS transition duration
   }
 
@@ -401,7 +398,6 @@ h1, h2, h3, h4, h5, h6 {
     }
   };
 </script>
-
 
 
 
