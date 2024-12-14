@@ -260,6 +260,58 @@ h1, h2, h3, h4, h5, h6 {
   transform: translate(-50%, -50%);
   text-align: center;
 }
+
+
+
+<style>
+  #sliderContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dim background overlay */
+    z-index: 1000;
+  }
+
+  #sliderContainer #slider {
+    position: fixed;
+    top: 50%;
+    left: -300px; /* Start off-screen */
+    width: 300px;
+    height: auto;
+    transform: translateY(-50%);
+    background: white;
+    padding: 20px;
+    z-index: 1001;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: left 0.5s ease; /* Smooth slide-in/out */
+  }
+
+  #sliderContainer #slider img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  #sliderContainer #slider button {
+    background: #DC0228;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  #sliderContainer #slider button:hover {
+    background: darkred;
+  }
+</style>
+
+	  
   </style>
 </head>
 <body>
@@ -298,54 +350,55 @@ h1, h2, h3, h4, h5, h6 {
 	
 	
 <!--Popup--->
-<div id="popupContainer" style="display:none;">
-  <div style="position:fixed; top:0; left:0; width:70%; height:70%; background:rgba(0,0,0,0.5); z-index:1000;" onclick="closePopup()"></div>
-  <div style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:20px; z-index:1001; text-align:center; border-radius:10px;">
-    <img src="popup.jpg" alt="Popup Image" style="max-width:90%; height:auto; border-radius:10px;">
-    <button onclick="closePopup()" style="margin-top:10px; background:#DC0228; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Close</button>
+<div id="sliderContainer" style="display:none;">
+  <div id="slider" style="position:fixed; top:50%; left:-300px; width:300px; height:auto; transform:translateY(-50%); background:white; padding:20px; z-index:1001; text-align:center; border-radius:10px; box-shadow:0px 4px 8px rgba(0,0,0,0.2); transition: left 0.5s ease;">
+    <img src="slider-image.jpg" alt="Slider Image" style="max-width:100%; height:auto; border-radius:10px;">
+    <p style="margin:10px 0;">This is a slider message!</p>
+    <button onclick="closeSlider()" style="background:#DC0228; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Close</button>
   </div>
 </div>
-
 <script>
-  // Toggle the popup feature on/off
-  const popupEnabled = true; // Set to 'false' to disable the popup
+  // Toggle the slider feature on/off
+  const sliderEnabled = true; // Set to 'false' to disable the slider
 
-  let popupInterval; // To store the interval ID
+  // Function to show the slider
+  function showSlider() {
+    if (sliderEnabled) {
+      const sliderContainer = document.getElementById('sliderContainer');
+      const slider = document.getElementById('slider');
 
-  // Function to show the popup
-  function showPopup() {
-    if (popupEnabled) {
-      const popupContainer = document.getElementById('popupContainer');
-      const popupContent = document.getElementById('popupContent');
-      
-      popupContainer.style.display = 'block';
-      popupContent.style.left = '50%'; // Slide the popup into view
+      sliderContainer.style.display = 'block';
+      slider.style.left = '0'; // Slide in from the left
+
+      // Automatically hide the slider after 10 seconds
+      setTimeout(() => {
+        closeSlider();
+      }, 10000);
     }
   }
 
-  // Function to close the popup
-  function closePopup() {
-    const popupContent = document.getElementById('popupContent');
-    popupContent.style.left = '-100%'; // Slide the popup out of view
+  // Function to close the slider
+  function closeSlider() {
+    const slider = document.getElementById('slider');
 
-    // Hide the overlay after the slide-out animation completes
+    slider.style.left = '-300px'; // Slide out to the left
     setTimeout(() => {
-      document.getElementById('popupContainer').style.display = 'none';
+      document.getElementById('sliderContainer').style.display = 'none';
     }, 500); // Match the CSS transition duration
   }
 
-  // Show the popup every 10 seconds
+  // Show the slider after 8 seconds
   window.onload = function () {
-    if (popupEnabled) {
-      popupInterval = setInterval(showPopup, 10000); // Show every 10 seconds
+    if (sliderEnabled) {
+      setTimeout(showSlider, 8000);
     }
   };
-
-  // Optional: Clear the interval when needed
-  function disablePopup() {
-    clearInterval(popupInterval);
-  }
 </script>
+
+
+	
+
+
 
 
 
