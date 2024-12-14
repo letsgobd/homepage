@@ -355,11 +355,9 @@ h1, h2, h3, h4, h5, h6 {
 <div id="sliderContainer">
   <div id="slider">
     <button onclick="closeSlider()">&times;</button>
-    <p><strong>We provide Turnitin AI & Plagiarism Report after you agree on the draft.</strong></p>
+    <p><strong>We provide Turnitin AI & Plagiarism Report after you agree on the final draft.</strong></p>
   </div>
 </div>
-
-
 
 <script>
   // Toggle the slider feature on/off
@@ -377,7 +375,7 @@ h1, h2, h3, h4, h5, h6 {
       // Automatically hide the slider after 10 seconds
       setTimeout(() => {
         closeSlider();
-      }, 10000);
+      }, 8000);
     }
   }
 
@@ -391,13 +389,17 @@ h1, h2, h3, h4, h5, h6 {
     }, 500); // Match the CSS transition duration
   }
 
-  // Show the slider after 8 seconds
+  // Set interval to show the slider every 15 seconds
   window.onload = function () {
     if (sliderEnabled) {
-      setTimeout(showSlider, 8000);
+      setInterval(showSlider, 8000); // Show the slider every 15 seconds
     }
   };
 </script>
+
+
+
+
 
 
 
