@@ -275,18 +275,18 @@ h1, h2, h3, h4, h5, h6 {
 
     #slider {
       position: fixed;
-      top: 50%;
-      left: -300px; /* Start off-screen */
+      bottom: -200px; /* Start off-screen */
+      left: 50%;
+      transform: translateX(-50%);
       width: 300px;
       height: auto;
-      transform: translateY(-50%);
       background: white;
       padding: 20px;
       z-index: 1001;
       text-align: center;
       border-radius: 10px;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-      transition: left 0.5s ease; /* Smooth slide-in/out */
+      transition: bottom 0.5s ease, top 0.5s ease; /* Smooth slide-in/out */
     }
 
     #slider p {
@@ -350,7 +350,7 @@ h1, h2, h3, h4, h5, h6 {
 
 	
 	
-<!--Popup--->
+<!--Slider--->
 
 <div id="sliderContainer">
   <div id="slider">
@@ -370,7 +370,7 @@ h1, h2, h3, h4, h5, h6 {
       const slider = document.getElementById('slider');
 
       sliderContainer.style.display = 'block'; // Show the overlay
-      slider.style.left = '0'; // Slide in from the left
+      slider.style.bottom = '10px'; // Slide in from the bottom
 
       // Automatically hide the slider after 10 seconds
       setTimeout(() => {
@@ -383,9 +383,12 @@ h1, h2, h3, h4, h5, h6 {
   function closeSlider() {
     const slider = document.getElementById('slider');
 
-    slider.style.left = '-300px'; // Slide out to the left
+    slider.style.bottom = ''; // Reset bottom
+    slider.style.top = '-200px'; // Slide out to the top
     setTimeout(() => {
       document.getElementById('sliderContainer').style.display = 'none'; // Hide the overlay
+      slider.style.top = ''; // Clear the top style
+      slider.style.bottom = '-200px'; // Reset position for next use
     }, 500); // Match the CSS transition duration
   }
 
@@ -396,6 +399,15 @@ h1, h2, h3, h4, h5, h6 {
     }
   };
 </script>
+
+
+
+
+
+
+
+
+	
 
 
 
