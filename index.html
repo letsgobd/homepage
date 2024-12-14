@@ -294,6 +294,48 @@ h1, h2, h3, h4, h5, h6 {
   <i class="fas fa-arrow-up"></i>
 </button>
 
+
+	
+	
+<!--Popup--->
+<div id="popupContainer" style="display:none;">
+  <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000;" onclick="closePopup()"></div>
+  <div style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:20px; z-index:1001; text-align:center; border-radius:10px;">
+    <img src="popup.jpg" alt="Popup Image" style="max-width:90%; height:auto; border-radius:10px;">
+    <button onclick="closePopup()" style="margin-top:10px; background:#DC0228; color:white; border:none; padding:10px 20px; border-radius:5px; cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<script>
+  // Toggle the popup feature on/off
+  const popupEnabled = true; // Set to 'false' to disable the popup
+
+  // Function to show the popup
+  function showPopup() {
+    if (popupEnabled) {
+      document.getElementById('popupContainer').style.display = 'block';
+    }
+  }
+
+  // Function to close the popup
+  function closePopup() {
+    document.getElementById('popupContainer').style.display = 'none';
+  }
+
+  // Show the popup after 8 seconds (8000 ms)
+  window.onload = function () {
+    setTimeout(showPopup, 8000);
+  };
+</script>
+
+
+
+
+
+
+
+
+	
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
   <a class="navbar-brand" href="#">
