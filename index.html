@@ -359,7 +359,6 @@ h1, h2, h3, h4, h5, h6 {
   </div>
 </div>
 
-<!-- Script -->
 <script>
   // Toggle the slider feature on/off
   const sliderEnabled = true; // Set to 'false' to disable the slider
@@ -371,7 +370,7 @@ h1, h2, h3, h4, h5, h6 {
       const slider = document.getElementById('slider');
 
       sliderContainer.style.display = 'block'; // Show the overlay
-      slider.style.left = '0'; // Slide in from the left
+      slider.style.bottom = '10px'; // Slide in from the bottom
 
       // Automatically hide the slider after 10 seconds
       setTimeout(() => {
@@ -384,9 +383,11 @@ h1, h2, h3, h4, h5, h6 {
   function closeSlider() {
     const slider = document.getElementById('slider');
 
-    slider.style.left = '-300px'; // Slide out to the left
+    slider.style.top = '-200px'; // Slide out to the top
     setTimeout(() => {
       document.getElementById('sliderContainer').style.display = 'none'; // Hide the overlay
+      slider.style.bottom = '-200px'; // Reset position for next use
+      slider.style.top = ''; // Clear the top style
     }, 500); // Match the CSS transition duration
   }
 
