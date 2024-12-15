@@ -887,6 +887,7 @@ h1, h2, h3, h4, h5, h6 {
   </div>
 </section>
 
+
 <!-- Modal for Carousel -->
 <div class="modal fade" id="carouselModal" tabindex="-1" role="dialog" aria-labelledby="carouselModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -901,11 +902,12 @@ h1, h2, h3, h4, h5, h6 {
         <!-- Carousel -->
         <div id="carouselContent" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner" id="carouselInner"></div>
-          <a class="carousel-control-prev" href="#carouselContent" role="button" data-slide="prev">
+          <!-- Left and Right Controls -->
+          <a class="carousel-control-prev custom-control-prev" href="#carouselContent" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselContent" role="button" data-slide="next">
+          <a class="carousel-control-next custom-control-next" href="#carouselContent" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
@@ -915,12 +917,29 @@ h1, h2, h3, h4, h5, h6 {
   </div>
 </div>
 
+<!-- CSS for Custom Arrow Visibility -->
+<style>
+  /* Make the arrows larger and more visible */
+  .custom-control-prev, .custom-control-next {
+    width: 5%; /* Increase clickable area */
+    opacity: 1; /* Always visible */
+  }
+  .carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.8); /* Dark background for arrows */
+    border-radius: 50%; /* Rounded arrows */
+    padding: 10px; /* Padding around arrows */
+  }
+  .carousel-control-prev-icon:hover, .carousel-control-next-icon:hover {
+    background-color: rgba(255, 255, 255, 0.8); /* Lighter on hover */
+  }
+</style>
+
 <script>
   // Images for each folder
   const sampleImages = {
     carouselOne: ['sample1.jpeg', 'sample1.jpeg', 'sample1.jpeg'],
     carouselTwo: ['sample1.jpeg', 'sample1.jpeg', 'sample1.jpeg'],
-    carouselThree: ['sample1.jpeg', 'sample1.jpeg', 'sample1.jpeg']
+    carouselThree: ['sample3-1.jpeg', 'sample3-2.jpeg', 'sample3-3.jpeg']
   };
 
   // Open carousel with dynamic content
@@ -942,37 +961,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 </script>
 
-<style>
-  /* Custom red color for folder icons */
-  .red-folder {
-    color: #DC0228;
-    transition: color 0.3s ease;
-  }
 
-  /* Jiggle effect on hover */
-  .red-folder:hover {
-    animation: jiggle 0.5s ease;
-    color: #FFD700;
-  }
-
-  @keyframes jiggle {
-    0% {
-      transform: rotate(0deg);
-    }
-    25% {
-      transform: rotate(-10deg);
-    }
-    50% {
-      transform: rotate(10deg);
-    }
-    75% {
-      transform: rotate(-10deg);
-    }
-    100% {
-      transform: rotate(0deg);
-    }
-  }
-</style>
 
 
 
