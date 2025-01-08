@@ -967,7 +967,7 @@ essay you commissioned us for.</p>
           <div class="card-body">
             <h3>SOP</h3>
             <p>800-1000 words, Admission Purpose</p>
-            <button class="btn btn-primary" onclick="openPricingPopup('SOP')">Click to see pricing</button>
+            <button class="btn btn-primary" onclick="openPricingPopup('price1.png', 'SOP Pricing')">Click to see pricing</button>
           </div>
         </div>
       </div>
@@ -977,7 +977,7 @@ essay you commissioned us for.</p>
           <div class="card-body">
             <h3>SOP/LOM</h3>
             <p>Any Length, Visa Purpose</p>
-            <button class="btn btn-primary" onclick="openPricingPopup('SOP/LOM')">Click to see pricing</button>
+            <button class="btn btn-primary" onclick="openPricingPopup('price2.png', 'SOP/LOM Pricing')">Click to see pricing</button>
           </div>
         </div>
       </div>
@@ -987,7 +987,7 @@ essay you commissioned us for.</p>
           <div class="card-body">
             <h3>LOM</h3>
             <p>800-1000 words, Admission Purpose</p>
-            <button class="btn btn-primary" onclick="openPricingPopup('LOM')">Click to see pricing</button>
+            <button class="btn btn-primary" onclick="openPricingPopup('price3.png', 'LOM Pricing')">Click to see pricing</button>
           </div>
         </div>
       </div>
@@ -997,7 +997,7 @@ essay you commissioned us for.</p>
           <div class="card-body">
             <h3>LOR</h3>
             <p>1-2 Pages</p>
-            <button class="btn btn-primary" onclick="openPricingPopup('LOR')">Click to see pricing</button>
+            <button class="btn btn-primary" onclick="openPricingPopup('price4.png', 'LOR Pricing')">Click to see pricing</button>
           </div>
         </div>
       </div>
@@ -1007,7 +1007,7 @@ essay you commissioned us for.</p>
           <div class="card-body">
             <h3>SOP/LOM Review</h3>
             <p>Feedback & suggestions only</p>
-            <button class="btn btn-primary" onclick="openPricingPopup('SOP/LOM Review')">Click to see pricing</button>
+            <button class="btn btn-primary" onclick="openPricingPopup('price5.png', 'SOP/LOM Review Pricing')">Click to see pricing</button>
           </div>
         </div>
       </div>
@@ -1017,7 +1017,7 @@ essay you commissioned us for.</p>
           <div class="card-body">
             <h3>CV</h3>
             <p>Max. 3 Pages, Any Latex Template</p>
-            <button class="btn btn-primary" onclick="openPricingPopup('CV')">Click to see pricing</button>
+            <button class="btn btn-primary" onclick="openPricingPopup('price6.png', 'CV Pricing')">Click to see pricing</button>
           </div>
         </div>
       </div>
@@ -1029,8 +1029,10 @@ essay you commissioned us for.</p>
 <div id="pricingOverlay" class="pricing-overlay">
   <div id="pricingPopup" class="pricing-popup">
     <button class="pricing-close-btn" onclick="closePricingPopup()">×</button>
-    <h3 id="popupTitle" class="text-center mb-4"></h3>
-    <div id="popupContent"></div>
+    <h3 id="popupTitle" class="text-center mb-3"></h3>
+    <div id="popupContent">
+      <img id="popupImage" src="" alt="Pricing Image" class="img-fluid">
+    </div>
   </div>
 </div>
 
@@ -1057,29 +1059,27 @@ essay you commissioned us for.</p>
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 600px;
-    height: 500px;
+    height: auto;
     background-color: #f1f1f1;
     z-index: 1000;
     border-radius: 10px;
-    overflow-y: auto;
+    overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
+    text-align: center;
   }
 
   .pricing-popup h3 {
     font-size: 1.8rem;
     font-family: 'LoveloBlack', sans-serif;
+    margin-bottom: 15px;
   }
 
-  .pricing-popup ul {
-    list-style-type: disc;
-    padding-left: 20px;
-  }
-
-  .pricing-popup .single-column {
-    text-align: center;
-    font-size: 1rem;
-    margin-top: 20px;
+  .pricing-popup img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #ccc;
   }
 
   .pricing-close-btn {
@@ -1105,41 +1105,33 @@ essay you commissioned us for.</p>
 
 <!-- JavaScript for Popup -->
 <script>
-  function openPricingPopup(type) {
+  /**
+   * Opens the pricing popup with a specific image and title.
+   * @param {string} imageSrc - The image filename.
+   * @param {string} title - The popup title.
+   */
+  function openPricingPopup(imageSrc, title) {
     const overlay = document.getElementById('pricingOverlay');
     const popupTitle = document.getElementById('popupTitle');
-    const popupContent = document.getElementById('popupContent');
+    const popupImage = document.getElementById('popupImage');
 
-    popupTitle.innerText = `${type} Pricing`;
-
-    const pricingDetails = {
-      'SOP': `
-        <div class="row">
-          <div class="col-md-6"><h4>Economy</h4><p>1250 Taka</p><ul><li>800-1000 words</li><li>1 revision</li><li>bla 1111</li></ul></div>
-          <div class="col-md-6"><h4>Standard</h4><p>2600 Taka</p><ul><li>800-1000 Words</li><li>4 revisions</li><li>bla 222</li></ul></div>
-        </div>`,
-      'SOP/LOM': `
-        <div class="row">
-          <div class="col-md-6"><h4>Economy</h4><p>1450 Taka</p><ul><li>333333</li><li>444444</li></ul></div>
-          <div class="col-md-6"><h4>Standard</h4><p>3200 Taka</p><ul><li>55555</li><li>66666</li></ul></div>
-        </div>`,
-      'SOP/LOM Review': `
-        <div class="single-column"><h4>600 Taka</h4><ul><li>CCCCC</li><li>DDDDD</li></ul></div>`,
-      'CV': `
-        <div class="single-column"><h4>1050 Taka</h4><ul><li>EEEE</li><li>FFFF</li></ul></div>`
-    };
-
-    popupContent.innerHTML = pricingDetails[type] || `<p>Details not available.</p>`;
+    popupTitle.innerText = title;
+    popupImage.src = imageSrc;
 
     overlay.style.display = 'block';
-    document.body.classList.add('no-scroll');
+    document.body.classList.add('no-scroll'); // Disable scrolling
   }
 
+  /**
+   * Closes the pricing popup.
+   */
   function closePricingPopup() {
     document.getElementById('pricingOverlay').style.display = 'none';
-    document.body.classList.remove('no-scroll');
+    document.getElementById('popupImage').src = ''; // Clear the image source
+    document.body.classList.remove('no-scroll'); // Enable scrolling
   }
 </script>
+
 
 
 
