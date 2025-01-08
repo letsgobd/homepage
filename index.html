@@ -955,8 +955,13 @@ essay you commissioned us for.</p>
   <div id="pricingPopup" class="pricing-popup">
     <button class="pricing-close-btn" onclick="closePricingPopup()">×</button>
     <h3 id="popupTitle" class="text-center mb-3"></h3>
-    <div id="popupContent">
+    <div class="popup-image-container">
       <img id="popupImage" src="" alt="Pricing Image" class="img-fluid">
+    </div>
+    <div class="zoom-controls text-center mt-3">
+      <button class="btn btn-sm btn-secondary" onclick="zoomImage('in')">Zoom In</button>
+      <button class="btn btn-sm btn-secondary" onclick="zoomImage('out')">Zoom Out</button>
+      <button class="btn btn-sm btn-secondary" onclick="resetZoom()">Reset</button>
     </div>
   </div>
 </div>
@@ -994,17 +999,19 @@ essay you commissioned us for.</p>
     text-align: center;
   }
 
-  .pricing-popup h3 {
-    font-size: 1.8rem;
-    font-family: 'LoveloBlack', sans-serif;
-    margin-bottom: 15px;
-  }
-
   .pricing-popup img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    transition: transform 0.3s ease;
+  }
+
+  .popup-image-container {
+    overflow: hidden;
+  }
+
+  .zoom-controls button {
+    margin: 5px;
   }
 
   .pricing-close-btn {
@@ -1028,8 +1035,10 @@ essay you commissioned us for.</p>
   }
 </style>
 
-<!-- JavaScript for Popup -->
+<!-- JavaScript for Popup and Zoom -->
 <script>
+  let currentZoom = 1;
+
   /**
    * Opens the pricing popup with a specific image and title.
    * @param {string} imageSrc - The image filename.
@@ -1042,6 +1051,7 @@ essay you commissioned us for.</p>
 
     popupTitle.innerText = title;
     popupImage.src = imageSrc;
+    resetZoom();
 
     overlay.style.display = 'block';
     document.body.classList.add('no-scroll'); // Disable scrolling
@@ -1055,7 +1065,28 @@ essay you commissioned us for.</p>
     document.getElementById('popupImage').src = ''; // Clear the image source
     document.body.classList.remove('no-scroll'); // Enable scrolling
   }
+
+  /**
+   * Zooms the image in or out.
+   * @param {string} direction - 'in' or 'out'
+   */
+  function zoomImage(direction) {
+    const popupImage = document.getElementById('popupImage');
+    if (direction === 'in') currentZoom += 0.2;
+    else if (direction === 'out' && currentZoom > 0.4) currentZoom -= 0.2;
+
+    popupImage.style.transform = `scale(${currentZoom})`;
+  }
+
+  /**
+   * Resets the zoom to the default value.
+   */
+  function resetZoom() {
+    currentZoom = 1;
+    document.getElementById('popupImage').style.transform = 'scale(1)';
+  }
 </script>
+
 
 
 
