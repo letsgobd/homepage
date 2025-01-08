@@ -978,6 +978,167 @@ essay you commissioned us for.</p>
 
 
 
+<!-- Pricing Section -->
+<section id="pricing" class="pricing py-5">
+  <div class="container">
+    <h2 class="text-center text-white mb-5">Pricing</h2>
+    <div class="row text-center">
+      <!-- SOP Card -->
+      <div class="col-md-4 mb-4">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h3>SOP</h3>
+            <p>800-1000 words, Admission Purpose</p>
+            <button class="btn btn-primary" onclick="openPricingPopup('SOP')">Click to see pricing</button>
+          </div>
+        </div>
+      </div>
+      <!-- SOP/LOM Card -->
+      <div class="col-md-4 mb-4">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h3>SOP/LOM</h3>
+            <p>Any Length, Visa Purpose</p>
+            <button class="btn btn-primary" onclick="openPricingPopup('SOP/LOM')">Click to see pricing</button>
+          </div>
+        </div>
+      </div>
+      <!-- LOM Card -->
+      <div class="col-md-4 mb-4">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h3>LOM</h3>
+            <p>800-1000 words, Admission Purpose</p>
+            <button class="btn btn-primary" onclick="openPricingPopup('LOM')">Click to see pricing</button>
+          </div>
+        </div>
+      </div>
+      <!-- LOR Card -->
+      <div class="col-md-4 mb-4">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h3>LOR</h3>
+            <p>1-2 Pages</p>
+            <button class="btn btn-primary" onclick="openPricingPopup('LOR')">Click to see pricing</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Popup Modal -->
+<div id="pricingPopup" class="pricing-popup">
+  <div class="pricing-popup-content">
+    <button class="pricing-close-btn" onclick="closePricingPopup()">×</button>
+    <h3 id="popupTitle" class="text-center mb-4"></h3>
+    <div class="row">
+      <!-- Economy Column -->
+      <div class="col-md-6">
+        <h4 class="text-center">Economy</h4>
+        <ul>
+          <li>Affordable pricing</li>
+          <li>Standard delivery time</li>
+          <li>Basic customization</li>
+        </ul>
+      </div>
+      <!-- Standard Column -->
+      <div class="col-md-6">
+        <h4 class="text-center">Standard</h4>
+        <ul>
+          <li>Premium support</li>
+          <li>Faster delivery</li>
+          <li>Enhanced customization</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pricing Popup Styles -->
+<style>
+  .pricing-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    height: 500px;
+    background-color: #f1f1f1;
+    z-index: 1000;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .pricing-popup-content {
+    padding: 20px;
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  .pricing-popup h3 {
+    font-size: 1.8rem;
+    font-family: 'LoveloBlack', sans-serif;
+  }
+
+  .pricing-popup h4 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .pricing-popup ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+
+  .pricing-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #DC0228;
+  }
+
+  .pricing-close-btn:hover {
+    color: darkred;
+  }
+</style>
+
+<!-- Pricing Popup JavaScript -->
+<script>
+  function openPricingPopup(type) {
+    const popup = document.getElementById('pricingPopup');
+    const title = document.getElementById('popupTitle');
+    title.innerText = `${type} Pricing`;
+    popup.style.display = 'block';
+  }
+
+  function closePricingPopup() {
+    const popup = document.getElementById('pricingPopup');
+    popup.style.display = 'none';
+  }
+</script>
+
+
+
+
+
+
+
+
+
+	
+
+	
+
+
 <section id="terms" class="container py-5">
   <h2 class="text-center mb-4">Terms & Conditions</h2>
 
