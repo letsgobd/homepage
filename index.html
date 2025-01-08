@@ -415,14 +415,6 @@ h1, h2, h3, h4, h5, h6 {
 	
 
 
-	
-
-
-
-
-
-
-
 
 
 
@@ -1120,48 +1112,35 @@ essay you commissioned us for.</p>
 
     popupTitle.innerText = `${type} Pricing`;
 
-    if (type === 'SOP' || type === 'SOP/LOM' || type === 'LOM' || type === 'LOR') {
-      popupContent.innerHTML = `
+    const pricingDetails = {
+      'SOP': `
         <div class="row">
-          <div class="col-md-6">
-            <h4 class="text-center">Economy</h4>
-            <ul>
-              <li>Affordable pricing</li>
-              <li>Standard delivery time</li>
-              <li>Basic customization</li>
-            </ul>
-          </div>
-          <div class="col-md-6">
-            <h4 class="text-center">Standard</h4>
-            <ul>
-              <li>Premium support</li>
-              <li>Faster delivery</li>
-              <li>Enhanced customization</li>
-            </ul>
-          </div>
-        </div>`;
-    } else {
-      popupContent.innerHTML = `
-        <div class="single-column">
-          <h4>${type} Details</h4>
-          <ul>
-            <li>In-depth feedback</li>
-            <li>Concise analysis</li>
-            <li>Suggestions for improvement</li>
-          </ul>
-        </div>`;
-    }
+          <div class="col-md-6"><h4>Economy</h4><p>1250 Taka</p><ul><li>800-1000 words</li><li>1 revision</li><li>bla 1111</li></ul></div>
+          <div class="col-md-6"><h4>Standard</h4><p>2600 Taka</p><ul><li>800-1000 Words</li><li>4 revisions</li><li>bla 222</li></ul></div>
+        </div>`,
+      'SOP/LOM': `
+        <div class="row">
+          <div class="col-md-6"><h4>Economy</h4><p>1450 Taka</p><ul><li>333333</li><li>444444</li></ul></div>
+          <div class="col-md-6"><h4>Standard</h4><p>3200 Taka</p><ul><li>55555</li><li>66666</li></ul></div>
+        </div>`,
+      'SOP/LOM Review': `
+        <div class="single-column"><h4>600 Taka</h4><ul><li>CCCCC</li><li>DDDDD</li></ul></div>`,
+      'CV': `
+        <div class="single-column"><h4>1050 Taka</h4><ul><li>EEEE</li><li>FFFF</li></ul></div>`
+    };
+
+    popupContent.innerHTML = pricingDetails[type] || `<p>Details not available.</p>`;
 
     overlay.style.display = 'block';
-    document.body.classList.add('no-scroll'); // Disable scrolling
+    document.body.classList.add('no-scroll');
   }
 
   function closePricingPopup() {
-    const overlay = document.getElementById('pricingOverlay');
-    overlay.style.display = 'none';
-    document.body.classList.remove('no-scroll'); // Enable scrolling
+    document.getElementById('pricingOverlay').style.display = 'none';
+    document.body.classList.remove('no-scroll');
   }
 </script>
+
 
 
 
