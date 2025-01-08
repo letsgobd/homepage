@@ -389,10 +389,10 @@ h1, h2, h3, h4, h5, h6 {
     }, 500); // Match the CSS transition duration
   }
 
-  // Set interval to show the slider every 15 seconds
+  // Set interval to show the slider every 55 seconds
   window.onload = function () {
     if (sliderEnabled) {
-      setInterval(showSlider, 15000); // Show the slider every 15 seconds
+      setInterval(showSlider, 55000); // Show the slider every 55 seconds
     }
   };
 </script>
@@ -964,7 +964,6 @@ essay you commissioned us for.</p>
 
 
  
-
 <!-- Pricing Section -->
 <section id="pricing" class="pricing py-5">
   <div class="container">
@@ -1010,6 +1009,26 @@ essay you commissioned us for.</p>
           </div>
         </div>
       </div>
+      <!-- SOP/LOM Review Card -->
+      <div class="col-md-4 mb-4">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h3>SOP/LOM Review</h3>
+            <p>Feedback & suggestions only</p>
+            <button class="btn btn-primary" onclick="openPricingPopup('SOP/LOM Review')">Click to see pricing</button>
+          </div>
+        </div>
+      </div>
+      <!-- CV Card -->
+      <div class="col-md-4 mb-4">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h3>CV</h3>
+            <p>Max. 3 Pages, Any Latex Template</p>
+            <button class="btn btn-primary" onclick="openPricingPopup('CV')">Click to see pricing</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1019,26 +1038,7 @@ essay you commissioned us for.</p>
   <div id="pricingPopup" class="pricing-popup">
     <button class="pricing-close-btn" onclick="closePricingPopup()">×</button>
     <h3 id="popupTitle" class="text-center mb-4"></h3>
-    <div class="row">
-      <!-- Economy Column -->
-      <div class="col-md-6">
-        <h4 class="text-center">Economy</h4>
-        <ul>
-          <li>Affordable pricing</li>
-          <li>Standard delivery time</li>
-          <li>Basic customization</li>
-        </ul>
-      </div>
-      <!-- Standard Column -->
-      <div class="col-md-6">
-        <h4 class="text-center">Standard</h4>
-        <ul>
-          <li>Premium support</li>
-          <li>Faster delivery</li>
-          <li>Enhanced customization</li>
-        </ul>
-      </div>
-    </div>
+    <div id="popupContent"></div>
   </div>
 </div>
 
@@ -1053,7 +1053,7 @@ essay you commissioned us for.</p>
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.3); /* Semi-transparent black */
-    backdrop-filter: blur(8px); /* Apply the blur effect */
+    backdrop-filter: blur(8px); /* Blur effect */
     z-index: 999;
   }
 
@@ -1069,7 +1069,7 @@ essay you commissioned us for.</p>
     background-color: #f1f1f1;
     z-index: 1000;
     border-radius: 10px;
-    overflow: hidden;
+    overflow-y: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
   }
@@ -1079,15 +1079,15 @@ essay you commissioned us for.</p>
     font-family: 'LoveloBlack', sans-serif;
   }
 
-  .pricing-popup h4 {
-    font-size: 1.2rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
   .pricing-popup ul {
     list-style-type: disc;
     padding-left: 20px;
+  }
+
+  .pricing-popup .single-column {
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 20px;
   }
 
   .pricing-close-btn {
@@ -1116,17 +1116,50 @@ essay you commissioned us for.</p>
   function openPricingPopup(type) {
     const overlay = document.getElementById('pricingOverlay');
     const popupTitle = document.getElementById('popupTitle');
-    
+    const popupContent = document.getElementById('popupContent');
+
     popupTitle.innerText = `${type} Pricing`;
+
+    if (type === 'SOP' || type === 'SOP/LOM' || type === 'LOM' || type === 'LOR') {
+      popupContent.innerHTML = `
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="text-center">Economy</h4>
+            <ul>
+              <li>Affordable pricing</li>
+              <li>Standard delivery time</li>
+              <li>Basic customization</li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <h4 class="text-center">Standard</h4>
+            <ul>
+              <li>Premium support</li>
+              <li>Faster delivery</li>
+              <li>Enhanced customization</li>
+            </ul>
+          </div>
+        </div>`;
+    } else {
+      popupContent.innerHTML = `
+        <div class="single-column">
+          <h4>${type} Details</h4>
+          <ul>
+            <li>In-depth feedback</li>
+            <li>Concise analysis</li>
+            <li>Suggestions for improvement</li>
+          </ul>
+        </div>`;
+    }
+
     overlay.style.display = 'block';
-    document.body.classList.add('no-scroll'); // Disable background scroll
+    document.body.classList.add('no-scroll'); // Disable scrolling
   }
 
   function closePricingPopup() {
     const overlay = document.getElementById('pricingOverlay');
-    
     overlay.style.display = 'none';
-    document.body.classList.remove('no-scroll'); // Re-enable background scroll
+    document.body.classList.remove('no-scroll'); // Enable scrolling
   }
 </script>
 
