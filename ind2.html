@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Let's Go - Your Study Abroad Journey</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&family=Poppins:wght@700;800&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+            heading: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            'brand-red': '#DC0228',
+            'brand-red-dark': '#a3011e',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Basic scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #DC0228;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a3011e;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* FAQ Accordion Transition */
+    .faq-answer {
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+      max-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-answer.open {
+      max-height: 200px; /* Adjust as needed */
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+    
+    /* Typing animation cursor */
+    .typing-cursor {
+        border-right: .15em solid white;
+        animation: blink-caret .75s step-end infinite;
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: white; }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Header -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent py-4">
+    <div class="container mx-auto px-6 flex justify-between items-center">
+      <a href="#home" class="flex items-center space-x-2">
+        <img id="header-logo" src="https://picsum.photos/seed/logo1/40/40" alt="Let's Go Logo"
+          class="h-10 transition-all duration-300 rounded-lg" />
+        <span class="text-white text-2xl font-heading font-bold">Let's Go</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center space-x-2">
+        <a href="#about" class="text-white font-medium px-4 py-2 border-b-2 border-transparent hover:border-white transition-colors duration-300">About Us</a>
+        <a href="#services" class="text-white font-medium px-4 py-2 border-b-2 border-transparent hover:border-white transition-colors duration-300">Services</a>
+        <a href="#process" class="text-white font-medium px-4 py-2 border-b-2 border-transparent hover:border-white transition-colors duration-300">Process</a>
+        <a href="#pricing" class="text-white font-medium px-4 py-2 border-b-2 border-transparent hover:border-white transition-colors duration-300">Pricing</a>
+        <a href="#terms" class="text-white font-medium px-4 py-2 border-b-2 border-transparent hover:border-white transition-colors duration-300">Terms</a>
+        <a href="#faq" class="text-white font-medium px-4 py-2 border-b-2 border-transparent hover:border-white transition-colors duration-300">FAQ</a>
+        <a href="#contact" class="text-white font-medium px-4 py-2 border-b-2 border-transparent hover:border-white transition-colors duration-300">Contact</a>
+      </nav>
+
+      <div class="lg:hidden">
+        <button id="mobile-menu-button" class="text-white focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-brand-red mt-2">
+      <nav class="flex flex-col items-center py-4">
+        <a href="#about" class="mobile-nav-link text-white font-medium py-3 w-full text-center hover:bg-brand-red-dark transition-colors duration-300">About Us</a>
+        <a href="#services" class="mobile-nav-link text-white font-medium py-3 w-full text-center hover:bg-brand-red-dark transition-colors duration-300">Services</a>
+        <a href="#process" class="mobile-nav-link text-white font-medium py-3 w-full text-center hover:bg-brand-red-dark transition-colors duration-300">Process</a>
+        <a href="#pricing" class="mobile-nav-link text-white font-medium py-3 w-full text-center hover:bg-brand-red-dark transition-colors duration-300">Pricing</a>
+        <a href="#terms" class="mobile-nav-link text-white font-medium py-3 w-full text-center hover:bg-brand-red-dark transition-colors duration-300">Terms</a>
+        <a href="#faq" class="mobile-nav-link text-white font-medium py-3 w-full text-center hover:bg-brand-red-dark transition-colors duration-300">FAQ</a>
+        <a href="#contact" class="mobile-nav-link text-white font-medium py-3 w-full text-center hover:bg-brand-red-dark transition-colors duration-300">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center text-white text-center"
+      style="background-image: url('https://picsum.photos/seed/hero/1920/1080')">
+      <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+      <div class="relative z-20 container mx-auto px-6">
+        <h1 class="text-5xl md:text-7xl font-extrabold font-heading text-shadow-lg mb-4">Let's Go</h1>
+        <p class="text-2xl md:text-4xl mb-8 font-light text-shadow">
+          <span id="typing-effect" class="typing-cursor"></span>
+        </p>
+        <a href="#contact"
+          class="bg-brand-red hover:bg-brand-red-dark text-white font-bold py-3 px-8 rounded-full text-lg transition-transform duration-300 transform hover:scale-105 shadow-lg">
+          Get Started
+        </a>
+      </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl md:text-5xl font-heading font-bold text-center text-brand-red relative pb-4 mb-12">
+          About Us<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-brand-red rounded-full"></span>
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="space-y-6 text-lg text-gray-600 leading-relaxed">
+            <p><strong>Let's Go</strong> is more than just a consultancy; we are your dedicated partners in turning your dream of studying abroad into a reality. Our mission is to simplify the complex process of international education applications, providing you with personalized guidance every step of the way.</p>
+            <p>With years of experience and a passionate team of experts, we have successfully helped hundreds of students embark on their life-changing academic journeys. We believe in providing transparent, ethical, and comprehensive services tailored to each student's unique aspirations and profile.</p>
+            <div class="text-center md:text-left pt-4">
+              <h3 class="text-2xl font-bold font-heading text-brand-red mb-4">Connect With Us</h3>
+              <div class="flex justify-center md:justify-start space-x-6">
+                <a href="#" class="text-brand-red hover:text-brand-red-dark text-4xl transition-transform duration-300 transform hover:scale-110"><i class="fab fa-facebook-square"></i></a>
+                <a href="#" class="text-brand-red hover:text-brand-red-dark text-4xl transition-transform duration-300 transform hover:scale-110"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-brand-red hover:text-brand-red-dark text-4xl transition-transform duration-300 transform hover:scale-110"><i class="fab fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="transform hover:scale-105 transition-transform duration-300 shadow-xl rounded-lg overflow-hidden">
+              <img src="https://picsum.photos/seed/about1/400/500" alt="Student smiling" class="w-full h-full object-cover" />
+            </div>
+            <div class="transform hover:scale-105 transition-transform duration-300 shadow-xl rounded-lg overflow-hidden">
+              <img src="https://picsum.photos/seed/about2/400/500" alt="University campus" class="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 bg-gray-100">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="counter-card text-center bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+            <i class="fas fa-user-graduate text-brand-red text-5xl mb-4"></i>
+            <h1 class="text-6xl font-heading font-extrabold text-brand-red" data-target="500">0+</h1>
+            <p class="text-xl text-gray-600 mt-2">Happy Students</p>
+          </div>
+          <div class="counter-card text-center bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+            <i class="fas fa-university text-brand-red text-5xl mb-4"></i>
+            <h1 class="text-6xl font-heading font-extrabold text-brand-red" data-target="120">0+</h1>
+            <p class="text-xl text-gray-600 mt-2">Partner Universities</p>
+          </div>
+          <div class="counter-card text-center bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+            <i class="fas fa-check-circle text-brand-red text-5xl mb-4"></i>
+            <h1 class="text-6xl font-heading font-extrabold text-brand-red" data-target="98">0%</h1>
+            <p class="text-xl text-gray-600 mt-2">Visa Success Rate (%)</p>
+          </div>
+           <div class="counter-card text-center bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+            <i class="fas fa-globe text-brand-red text-5xl mb-4"></i>
+            <h1 class="text-6xl font-heading font-extrabold text-brand-red" data-target="25">0+</h1>
+            <p class="text-xl text-gray-600 mt-2">Countries Covered</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl md:text-5xl font-heading font-bold text-center text-brand-red relative pb-4 mb-12">
+          Our Services<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-brand-red rounded-full"></span>
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
+            <div class="text-brand-red text-5xl mb-5"><i class="fas fa-search"></i></div>
+            <h3 class="text-2xl font-heading font-bold text-gray-800">Course & University Selection</h3>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
+            <div class="text-brand-red text-5xl mb-5"><i class="fas fa-file-alt"></i></div>
+            <h3 class="text-2xl font-heading font-bold text-gray-800">Application Assistance</h3>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
+            <div class="text-brand-red text-5xl mb-5"><i class="fas fa-pen-fancy"></i></div>
+            <h3 class="text-2xl font-heading font-bold text-gray-800">SOP/LOR Guidance</h3>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
+            <div class="text-brand-red text-5xl mb-5"><i class="fas fa-plane-departure"></i></div>
+            <h3 class="text-2xl font-heading font-bold text-gray-800">Visa & Pre-Departure</h3>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
+            <div class="text-brand-red text-5xl mb-5"><i class="fas fa-comments-dollar"></i></div>
+            <h3 class="text-2xl font-heading font-bold text-gray-800">Scholarship Guidance</h3>
+          </div>
+          <div class="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center">
+            <div class="text-brand-red text-5xl mb-5"><i class="fas fa-user-tie"></i></div>
+            <h3 class="text-2xl font-heading font-bold text-gray-800">Interview Preparation</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Samples Section -->
+    <section id="samples" class="py-20 bg-gray-100">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-heading font-bold text-center text-brand-red relative pb-4 mb-12">
+          View Our Samples<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-brand-red rounded-full"></span>
+        </h2>
+        <div class="grid md:grid-cols-3 gap-10">
+          <div data-folder-index="0" class="sample-folder cursor-pointer bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+            <i class="fas fa-folder-open text-8xl text-brand-red mb-4"></i>
+            <p class="text-xl font-bold font-heading text-brand-red">Statement of Purpose</p>
+          </div>
+          <div data-folder-index="1" class="sample-folder cursor-pointer bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+            <i class="fas fa-folder-open text-8xl text-brand-red mb-4"></i>
+            <p class="text-xl font-bold font-heading text-brand-red">Letter of Recommendation</p>
+          </div>
+          <div data-folder-index="2" class="sample-folder cursor-pointer bg-white p-6 rounded-lg shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+            <i class="fas fa-folder-open text-8xl text-brand-red mb-4"></i>
+            <p class="text-xl font-bold font-heading text-brand-red">Student Resumes</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Samples Modal -->
+    <div id="samples-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 items-center justify-center z-50 p-4">
+      <div class="bg-white rounded-lg shadow-2xl max-w-2xl w-full relative">
+        <div class="p-4 border-b flex justify-between items-center bg-brand-red text-white rounded-t-lg">
+          <h3 id="samples-modal-title" class="text-2xl font-bold font-heading"></h3>
+          <button id="samples-modal-close" class="text-white hover:text-gray-200 text-3xl">&times;</button>
+        </div>
+        <div class="p-4 relative">
+          <div class="overflow-hidden relative" style="height: 70vh;">
+            <img id="samples-modal-image" src="" alt="Sample" class="w-full h-full object-contain" />
+          </div>
+          <button id="samples-modal-prev" class="absolute top-1/2 left-0 md:-left-12 transform -translate-y-1/2 bg-brand-red text-white p-3 rounded-full hover:bg-brand-red-dark transition-colors focus:outline-none">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button id="samples-modal-next" class="absolute top-1/2 right-0 md:-right-12 transform -translate-y-1/2 bg-brand-red text-white p-3 rounded-full hover:bg-brand-red-dark transition-colors focus:outline-none">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Process Section -->
+    <section id="process" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl md:text-5xl font-heading font-bold text-center text-brand-red relative pb-4 mb-12">
+          Our Process<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-brand-red rounded-full"></span>
+        </h2>
+        <div class="relative max-w-3xl mx-auto">
+          <div class="absolute left-4 md:left-1/2 w-1 h-full bg-brand-red -translate-x-1/2"></div>
+          
+          <div class="mb-8 flex md:justify-between items-center w-full flex-row">
+            <div class="hidden md:block w-5/12"></div>
+            <div class="z-10"><div class="w-8 h-8 bg-brand-red rounded-full flex items-center justify-center text-white font-bold shadow-lg ring-4 ring-white">1</div></div>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg w-full md:w-5/12 ml-8 md:ml-0">
+              <h4 class="text-xl font-bold font-heading text-brand-red mb-2">Initial Consultation</h4>
+              <p class="text-gray-600">We start with a free counseling session to understand your profile, interests, and aspirations.</p>
+            </div>
+          </div>
+          
+          <div class="mb-8 flex md:justify-between items-center w-full flex-row-reverse">
+            <div class="hidden md:block w-5/12"></div>
+            <div class="z-10"><div class="w-8 h-8 bg-brand-red rounded-full flex items-center justify-center text-white font-bold shadow-lg ring-4 ring-white">2</div></div>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg w-full md:w-5/12 mr-8 md:mr-0">
+              <h4 class="text-xl font-bold font-heading text-brand-red mb-2">University Shortlisting</h4>
+              <p class="text-gray-600">Based on your profile, we help you shortlist the best-fit universities and courses.</p>
+            </div>
+          </div>
+
+          <div class="mb-8 flex md:justify-between items-center w-full flex-row">
+            <div class="hidden md:block w-5/12"></div>
+            <div class="z-10"><div class="w-8 h-8 bg-brand-red rounded-full flex items-center justify-center text-white font-bold shadow-lg ring-4 ring-white">3</div></div>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg w-full md:w-5/12 ml-8 md:ml-0">
+              <h4 class="text-xl font-bold font-heading text-brand-red mb-2">Application & Documentation</h4>
+              <p class="text-gray-600">We guide you through the entire application process, including document preparation and submission.</p>
+            </div>
+          </div>
+
+           <div class="mb-8 flex md:justify-between items-center w-full flex-row-reverse">
+            <div class="hidden md:block w-5/12"></div>
+            <div class="z-10"><div class="w-8 h-8 bg-brand-red rounded-full flex items-center justify-center text-white font-bold shadow-lg ring-4 ring-white">4</div></div>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg w-full md:w-5/12 mr-8 md:mr-0">
+              <h4 class="text-xl font-bold font-heading text-brand-red mb-2">Offer Letter & Acceptance</h4>
+              <p class="text-gray-600">Congratulations! We help you manage your offer letters and complete acceptance formalities.</p>
+            </div>
+          </div>
+
+           <div class="mb-8 flex md:justify-between items-center w-full flex-row">
+            <div class="hidden md:block w-5/12"></div>
+            <div class="z-10"><div class="w-8 h-8 bg-brand-red rounded-full flex items-center justify-center text-white font-bold shadow-lg ring-4 ring-white">5</div></div>
+            <div class="bg-gray-50 p-6 rounded-lg shadow-lg w-full md:w-5/12 ml-8 md:ml-0">
+              <h4 class="text-xl font-bold font-heading text-brand-red mb-2">Visa Processing</h4>
+              <p class="text-gray-600">Our experts provide comprehensive assistance with your student visa application.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-brand-red">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-heading font-bold text-center relative pb-4 mb-12 text-white">
+          Our Packages<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 rounded-full bg-white"></span>
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-white text-gray-800 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+              <h3 class="text-3xl font-bold font-heading text-brand-red mb-4">Basic</h3>
+              <p class="text-gray-600 mb-6 flex-grow">Ideal for self-starters who need essential guidance.</p>
+              <button data-package-index="0" class="pricing-button bg-brand-red text-white font-bold py-3 px-8 rounded-full hover:bg-brand-red-dark transition-colors duration-300 mt-auto">Learn More</button>
+            </div>
+            <div class="bg-white text-gray-800 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+              <h3 class="text-3xl font-bold font-heading text-brand-red mb-4">Standard</h3>
+              <p class="text-gray-600 mb-6 flex-grow">Our most popular package for comprehensive support.</p>
+              <button data-package-index="1" class="pricing-button bg-brand-red text-white font-bold py-3 px-8 rounded-full hover:bg-brand-red-dark transition-colors duration-300 mt-auto">Learn More</button>
+            </div>
+            <div class="bg-white text-gray-800 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+              <h3 class="text-3xl font-bold font-heading text-brand-red mb-4">Premium</h3>
+              <p class="text-gray-600 mb-6 flex-grow">All-inclusive service for a completely stress-free process.</p>
+              <button data-package-index="2" class="pricing-button bg-brand-red text-white font-bold py-3 px-8 rounded-full hover:bg-brand-red-dark transition-colors duration-300 mt-auto">Learn More</button>
+            </div>
+            <div class="bg-white text-gray-800 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+              <h3 class="text-3xl font-bold font-heading text-brand-red mb-4">University Pro</h3>
+              <p class="text-gray-600 mb-6 flex-grow">Focused on applications for a specific set of universities.</p>
+              <button data-package-index="3" class="pricing-button bg-brand-red text-white font-bold py-3 px-8 rounded-full hover:bg-brand-red-dark transition-colors duration-300 mt-auto">Learn More</button>
+            </div>
+            <div class="bg-white text-gray-800 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+              <h3 class="text-3xl font-bold font-heading text-brand-red mb-4">Visa Fast-Track</h3>
+              <p class="text-gray-600 mb-6 flex-grow">Expedited and focused support for the visa process.</p>
+              <button data-package-index="4" class="pricing-button bg-brand-red text-white font-bold py-3 px-8 rounded-full hover:bg-brand-red-dark transition-colors duration-300 mt-auto">Learn More</button>
+            </div>
+            <div class="bg-white text-gray-800 p-8 rounded-xl shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col">
+              <h3 class="text-3xl font-bold font-heading text-brand-red mb-4">Total Journey</h3>
+              <p class="text-gray-600 mb-6 flex-grow">End-to-end premium service from start to finish.</p>
+              <button data-package-index="5" class="pricing-button bg-brand-red text-white font-bold py-3 px-8 rounded-full hover:bg-brand-red-dark transition-colors duration-300 mt-auto">Learn More</button>
+            </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Pricing Modal -->
+    <div id="pricing-modal" class="hidden fixed inset-0 bg-black bg-opacity-75 items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-2xl max-w-lg w-full relative text-left">
+            <button id="pricing-modal-close" class="absolute top-2 right-4 text-brand-red hover:text-brand-red-dark text-4xl font-bold">&times;</button>
+            <img id="pricing-modal-image" src="" alt="" class="w-full h-48 object-cover rounded-t-lg" />
+            <div class="p-8">
+                <h3 id="pricing-modal-name" class="text-3xl font-bold font-heading text-brand-red mb-2"></h3>
+                <p id="pricing-modal-price" class="text-2xl font-bold text-brand-red mb-4"></p>
+                <p id="pricing-modal-details" class="text-gray-600 text-lg"></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Terms & Conditions Section -->
+    <section id="terms" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-center text-brand-red relative pb-4 mb-12">
+                Terms & Conditions<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-brand-red rounded-full"></span>
+            </h2>
+            <div class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <div class="flex justify-center space-x-4 mb-6">
+                    <button id="lang-en-btn" class="px-6 py-2 rounded-full font-semibold transition-colors duration-300 bg-brand-red text-white">
+                        English
+                    </button>
+                    <button id="lang-other-btn" class="px-6 py-2 rounded-full font-semibold transition-colors duration-300 bg-gray-200 text-gray-700 hover:bg-gray-300">
+                        Español
+                    </button>
+                </div>
+
+                <div class="h-80 overflow-y-auto border border-gray-200 p-6 rounded-md bg-gray-50 mb-8">
+                    <h3 id="terms-title" class="text-2xl font-bold font-heading text-brand-red mb-4"></h3>
+                    <ol id="terms-list" class="space-y-4 text-gray-700 list-decimal list-inside leading-relaxed">
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold text-center text-brand-red relative pb-4 mb-12">
+                Frequently Asked Questions<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-brand-red rounded-full"></span>
+            </h2>
+            <div class="max-w-3xl mx-auto bg-gray-50 rounded-lg shadow-md">
+                <div class="border-b border-gray-200">
+                    <button class="faq-question w-full text-left py-5 px-6 flex justify-between items-center focus:outline-none">
+                        <span class="text-lg font-semibold text-brand-red">What countries do you provide services for?</span>
+                        <span class="transform transition-transform duration-300"><i class="fas fa-chevron-down text-brand-red"></i></span>
+                    </button>
+                    <div class="faq-answer px-6"><p>We specialize in major destinations like the USA, UK, Canada, Australia, and Germany, but we can assist with applications to many other countries as well.</p></div>
+                </div>
+                 <div class="border-b border-gray-200">
+                    <button class="faq-question w-full text-left py-5 px-6 flex justify-between items-center focus:outline-none">
+                        <span class="text-lg font-semibold text-brand-red">Is the initial consultation really free?</span>
+                        <span class="transform transition-transform duration-300"><i class="fas fa-chevron-down text-brand-red"></i></span>
+                    </button>
+                    <div class="faq-answer px-6"><p>Absolutely! The first counseling session is completely free of charge and carries no obligations. It helps us understand your goals and allows you to understand our process.</p></div>
+                </div>
+                 <div class="border-b border-gray-200">
+                    <button class="faq-question w-full text-left py-5 px-6 flex justify-between items-center focus:outline-none">
+                        <span class="text-lg font-semibold text-brand-red">How do you help with scholarships?</span>
+                        <span class="transform transition-transform duration-300"><i class="fas fa-chevron-down text-brand-red"></i></span>
+                    </button>
+                    <div class="faq-answer px-6"><p>We assist students in finding and applying for relevant scholarships by providing information on eligibility criteria, application deadlines, and helping to prepare the necessary documents.</p></div>
+                </div>
+                 <div class="border-b border-gray-200">
+                    <button class="faq-question w-full text-left py-5 px-6 flex justify-between items-center focus:outline-none">
+                        <span class="text-lg font-semibold text-brand-red">What is your visa success rate?</span>
+                        <span class="transform transition-transform duration-300"><i class="fas fa-chevron-down text-brand-red"></i></span>
+                    </button>
+                    <div class="faq-answer px-6"><p>We are proud to have a high visa success rate of over 98%, thanks to our meticulous documentation and thorough interview preparation for students.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agreement Section -->
+    <section id="agreement" class="py-20 bg-gray-100">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-heading font-bold text-center text-brand-red relative pb-4 mb-12">
+          Client Agreement<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-brand-red rounded-full"></span>
+        </h2>
+        <div class="max-w-3xl mx-auto border-2 border-dashed border-brand-red bg-white p-6 rounded-lg shadow-sm mb-8">
+          <p id="agreement-text" class="text-gray-700 leading-relaxed">I hereby authorize Let's Go Consultancy to access my personal and academic information for the purpose of university applications and visa processing. I confirm that all information provided is accurate and I agree to the terms and conditions of their service packages.</p>
+        </div>
+        <button id="copy-agreement-btn" class="bg-brand-red text-white font-bold py-3 px-8 rounded-full hover:bg-brand-red-dark transition-all duration-300 transform hover:scale-105">
+          <i class="fas fa-copy mr-2"></i> Copy Agreement
+        </button>
+        <p id="copy-feedback" class="mt-4 font-semibold text-green-600 h-6"></p>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-heading font-bold text-center text-brand-red relative pb-4 mb-12">
+          Ready to Start Your Journey?<span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-brand-red rounded-full"></span>
+        </h2>
+        <p class="max-w-2xl mx-auto text-lg text-gray-600 mb-8">
+          Have more questions or ready to take the next step? Our counselors are just a message away. Contact us today for your free consultation!
+        </p>
+        <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer"
+          class="inline-block bg-[#25D366] text-white font-bold text-xl py-4 px-10 rounded-full hover:bg-[#1DA851] transition-all duration-300 transform hover:scale-105 shadow-lg">
+          <i class="fab fa-whatsapp mr-3"></i> Chat with Us on WhatsApp
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brand-red text-white py-6 border-t-4 border-brand-red-dark">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+      <div class="flex items-center space-x-2 mb-4 md:mb-0">
+        <img src="https://picsum.photos/seed/logo2/40/40" alt="Let's Go Logo" class="h-10 rounded-lg" />
+        <span class="text-white text-2xl font-heading font-bold">Let's Go</span>
+      </div>
+      <p id="footer-year" class="text-gray-200"></p>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top Button -->
+  <button id="scroll-to-top"
+    class="fixed bottom-8 right-8 bg-brand-red text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-lg hover:bg-brand-red-dark transition-all duration-300 transform hover:scale-110 focus:outline-none z-40 opacity-0 invisible">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- Data ---
+    const sampleData = [
+      { name: 'Statement of Purpose', images: ['https://picsum.photos/seed/sop1/800/1100', 'https://picsum.photos/seed/sop2/800/1100'] },
+      { name: 'Letter of Recommendation', images: ['https://picsum.photos/seed/lor1/800/1100', 'https://picsum.photos/seed/lor2/800/1100'] },
+      { name: 'Student Resumes', images: ['https://picsum.photos/seed/resume1/800/1100', 'https://picsum.photos/seed/resume2/800/1100'] },
+    ];
+    
+    const pricingPackages = [
+        { name: 'Basic', price: '$499', description: 'Ideal for self-starters who need essential guidance.', details: 'Includes University Shortlisting (up to 5) and Application Review.', image: 'https://picsum.photos/seed/basic/500/300' },
+        { name: 'Standard', price: '$999', description: 'Our most popular package for comprehensive support.', details: 'Includes all Basic features plus SOP/LOR editing and Visa assistance.', image: 'https://picsum.photos/seed/standard/500/300' },
+        { name: 'Premium', price: '$1599', description: 'All-inclusive service for a completely stress-free process.', details: 'Includes all Standard features plus unlimited applications and direct support.', image: 'https://picsum.photos/seed/premium/500/300' },
+        { name: 'University Pro', price: '$799', description: 'Focused on applications for a specific set of universities.', details: 'Deep-dive support for up to 3 chosen universities, including interview prep.', image: 'https://picsum.photos/seed/pro/500/300' },
+        { name: 'Visa Fast-Track', price: '$699', description: 'Expedited and focused support for the visa process.', details: 'Comprehensive visa documentation, mock interviews, and submission support.', image: 'https://picsum.photos/seed/visa/500/300' },
+        { name: 'Total Journey', price: '$2499', description: 'End-to-end premium service from start to finish.', details: 'Includes Premium features plus pre-departure and accommodation assistance.', image: 'https://picsum.photos/seed/journey/500/300' },
+    ];
+
+    const termsData = {
+        en: {
+            title: "Terms and Conditions",
+            content: [
+                "Introduction: Welcome to Let's Go Consultancy. By using our services, you agree to be bound by these terms and conditions.",
+                "Services: We provide educational consultancy services, including university selection, application assistance, and visa guidance. Our services are advisory in nature.",
+                "Client Obligations: You must provide accurate and complete information for your applications. Any misrepresentation may result in termination of our services without a refund.",
+                "Fees and Payments: All fees for our service packages must be paid in advance. Fees are non-refundable once the service has commenced.",
+                "Confidentiality: We are committed to protecting your privacy. Your personal information will be used solely for the purpose of your application process.",
+                "Limitation of Liability: While we strive for the best outcomes, we do not guarantee admission to any university or the approval of a student visa. Our liability is limited to the fees paid for our services.",
+                "Governing Law: These terms shall be governed by the laws of the jurisdiction in which our company is registered.",
+            ]
+        },
+        other: {
+            title: "Términos y Condiciones",
+            content: [
+                "Introducción: Bienvenido a Let's Go Consultancy. Al utilizar nuestros servicios, usted acepta regirse por estos términos y condiciones.",
+                "Servicios: Ofrecemos servicios de consultoría educativa, incluida la selección de universidades, asistencia con la solicitud y orientación sobre visas. Nuestros servicios son de naturaleza consultiva.",
+                "Obligaciones del Cliente: Debe proporcionar información precisa y completa para sus solicitudes. Cualquier declaración falsa puede resultar en la terminación de nuestros servicios sin reembolso.",
+                "Tarifas y Pagos: Todas las tarifas de nuestros paquetes de servicios deben pagarse por adelantado. Las tarifas no son reembolsables una vez que el servicio ha comenzado.",
+                "Confidencialidad: Nos comprometemos a proteger su privacidad. Su información personal se utilizará únicamente con el fin de su proceso de solicitud.",
+                "Limitación de Responsabilidad: Si bien nos esforzamos por obtener los mejores resultados, no garantizamos la admisión a ninguna universidad ni la aprobación de una visa de estudiante. Nuestra responsabilidad se limita a las tarifas pagadas por nuestros servicios.",
+                "Ley Aplicable: Estos términos se regirán por las leyes de la jurisdicción en la que está registrada nuestra empresa.",
+            ]
+        }
+    };
+
+    // --- Header Logic ---
+    const header = document.getElementById('header');
+    const headerLogo = document.getElementById('header-logo');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('bg-brand-red', 'shadow-md', 'py-2');
+            header.classList.remove('bg-transparent', 'py-4');
+            headerLogo.classList.add('h-8');
+            headerLogo.classList.remove('h-10');
+        } else {
+            header.classList.remove('bg-brand-red', 'shadow-md', 'py-2');
+            header.classList.add('bg-transparent', 'py-4');
+            headerLogo.classList.remove('h-8');
+            headerLogo.classList.add('h-10');
+        }
+    });
+
+    mobileMenuButton.addEventListener('click', () => {
+        const isMenuOpen = mobileMenu.classList.toggle('hidden');
+        mobileMenuButton.querySelector('i').classList.toggle('fa-bars', isMenuOpen);
+        mobileMenuButton.querySelector('i').classList.toggle('fa-times', !isMenuOpen);
+    });
+    
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+             mobileMenu.classList.add('hidden');
+             mobileMenuButton.querySelector('i').classList.add('fa-bars');
+             mobileMenuButton.querySelector('i').classList.remove('fa-times');
+        });
+    });
+
+    // --- Hero Typing Effect ---
+    const typingElement = document.getElementById('typing-effect');
+    const textToType = "Your Study Abroad Journey Starts Here";
+    let charIndex = 0;
+    function type() {
+        if (charIndex < textToType.length) {
+            typingElement.textContent += textToType.charAt(charIndex);
+            charIndex++;
+            setTimeout(type, 100);
+        }
+    }
+    type();
+    
+    // --- Stats Counter ---
+    const counters = document.querySelectorAll('.counter-card h1');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000;
+                let current = 0;
+                const increment = target / (duration / 16); // 60fps
+                
+                const updateCount = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current) + (counter.innerText.includes('%') ? '%' : '+');
+                        requestAnimationFrame(updateCount);
+                    } else {
+                        counter.innerText = target + (counter.innerText.includes('%') ? '%' : '+');
+                    }
+                };
+                updateCount();
+                observer.unobserve(counter);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
+
+    // --- Samples Modal Logic ---
+    const sampleFolders = document.querySelectorAll('.sample-folder');
+    const samplesModal = document.getElementById('samples-modal');
+    const samplesModalTitle = document.getElementById('samples-modal-title');
+    const samplesModalImage = document.getElementById('samples-modal-image');
+    const samplesModalClose = document.getElementById('samples-modal-close');
+    const samplesModalPrev = document.getElementById('samples-modal-prev');
+    const samplesModalNext = document.getElementById('samples-modal-next');
+    
+    let currentFolderIndex = 0;
+    let currentImageIndex = 0;
+
+    function updateSampleImage() {
+        const folder = sampleData[currentFolderIndex];
+        samplesModalImage.src = folder.images[currentImageIndex];
+    }
+    
+    sampleFolders.forEach(folder => {
+        folder.addEventListener('click', () => {
+            currentFolderIndex = parseInt(folder.getAttribute('data-folder-index'));
+            currentImageIndex = 0;
+            const folderData = sampleData[currentFolderIndex];
+            samplesModalTitle.innerText = folderData.name;
+            updateSampleImage();
+            samplesModal.classList.remove('hidden');
+            samplesModal.classList.add('flex');
+        });
+    });
+    
+    samplesModalClose.addEventListener('click', () => {
+        samplesModal.classList.add('hidden');
+        samplesModal.classList.remove('flex');
+    });
+
+    samplesModalPrev.addEventListener('click', () => {
+        const folder = sampleData[currentFolderIndex];
+        currentImageIndex = (currentImageIndex - 1 + folder.images.length) % folder.images.length;
+        updateSampleImage();
+    });
+
+    samplesModalNext.addEventListener('click', () => {
+        const folder = sampleData[currentFolderIndex];
+        currentImageIndex = (currentImageIndex + 1) % folder.images.length;
+        updateSampleImage();
+    });
+
+    // --- Pricing Modal Logic ---
+    const pricingButtons = document.querySelectorAll('.pricing-button');
+    const pricingModal = document.getElementById('pricing-modal');
+    const pricingModalClose = document.getElementById('pricing-modal-close');
+    const pricingModalImage = document.getElementById('pricing-modal-image');
+    const pricingModalName = document.getElementById('pricing-modal-name');
+    const pricingModalPrice = document.getElementById('pricing-modal-price');
+    const pricingModalDetails = document.getElementById('pricing-modal-details');
+
+    pricingButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const pkgIndex = parseInt(button.getAttribute('data-package-index'));
+            const pkg = pricingPackages[pkgIndex];
+            pricingModalImage.src = pkg.image;
+            pricingModalImage.alt = pkg.name;
+            pricingModalName.innerText = `${pkg.name} Package`;
+            pricingModalPrice.innerText = pkg.price;
+            pricingModalDetails.innerText = pkg.details;
+            pricingModal.classList.remove('hidden');
+            pricingModal.classList.add('flex');
+        });
+    });
+
+    pricingModalClose.addEventListener('click', () => {
+        pricingModal.classList.add('hidden');
+        pricingModal.classList.remove('flex');
+    });
+
+    // --- Terms Logic ---
+    const langEnBtn = document.getElementById('lang-en-btn');
+    const langOtherBtn = document.getElementById('lang-other-btn');
+    const termsTitle = document.getElementById('terms-title');
+    const termsList = document.getElementById('terms-list');
+
+    function updateTerms(lang) {
+        const data = termsData[lang];
+        termsTitle.innerText = data.title;
+        termsList.innerHTML = data.content.map(item => `<li>${item}</li>`).join('');
+
+        if (lang === 'en') {
+            langEnBtn.classList.add('bg-brand-red', 'text-white');
+            langEnBtn.classList.remove('bg-gray-200', 'text-gray-700');
+            langOtherBtn.classList.remove('bg-brand-red', 'text-white');
+            langOtherBtn.classList.add('bg-gray-200', 'text-gray-700');
+        } else {
+            langOtherBtn.classList.add('bg-brand-red', 'text-white');
+            langOtherBtn.classList.remove('bg-gray-200', 'text-gray-700');
+            langEnBtn.classList.remove('bg-brand-red', 'text-white');
+            langEnBtn.classList.add('bg-gray-200', 'text-gray-700');
+        }
+    }
+
+    langEnBtn.addEventListener('click', () => updateTerms('en'));
+    langOtherBtn.addEventListener('click', () => updateTerms('other'));
+    
+    // Initial load
+    updateTerms('en');
+
+    // --- FAQ Logic ---
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach((question, index) => {
+        question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            const icon = question.querySelector('span:last-child');
+            
+            // Close other open answers
+            faqQuestions.forEach((otherQuestion, otherIndex) => {
+                if (index !== otherIndex) {
+                    otherQuestion.nextElementSibling.classList.remove('open');
+                    otherQuestion.querySelector('span:last-child').classList.remove('rotate-180');
+                }
+            });
+            
+            // Toggle current answer
+            answer.classList.toggle('open');
+            icon.classList.toggle('rotate-180');
+        });
+    });
+
+    // --- Agreement Copy Logic ---
+    const copyBtn = document.getElementById('copy-agreement-btn');
+    const agreementText = document.getElementById('agreement-text').innerText;
+    const copyFeedback = document.getElementById('copy-feedback');
+
+    copyBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(agreementText).then(() => {
+            copyFeedback.innerText = 'Copied to clipboard!';
+            setTimeout(() => copyFeedback.innerText = '', 2000);
+        }).catch(() => {
+            copyFeedback.innerText = 'Failed to copy!';
+            setTimeout(() => copyFeedback.innerText = '', 2000);
+        });
+    });
+
+    // --- Footer Year ---
+    document.getElementById('footer-year').innerText = `© ${new Date().getFullYear()} Let's Go Consultancy. All Rights Reserved.`;
+
+    // --- Scroll To Top Button ---
+    const scrollToTopBtn = document.getElementById('scroll-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.remove('opacity-0', 'invisible');
+            scrollToTopBtn.classList.add('opacity-100', 'visible');
+        } else {
+            scrollToTopBtn.classList.remove('opacity-100', 'visible');
+            scrollToTopBtn.classList.add('opacity-0', 'invisible');
+        }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
+</script>
+
+</body>
+
+</html>
